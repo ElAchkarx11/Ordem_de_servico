@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:ordem_servico/user_info.dart';
 
 
 class UserEdit extends StatelessWidget {
@@ -104,7 +105,7 @@ class _NavigationBarState extends State<NavigationBarUser> {
           TextButton(
               onPressed: () {
                 Navigator.push(context,
-                    MaterialPageRoute(builder: (context) => const UserEdit()));
+                    MaterialPageRoute(builder: (context) => const UserInfo()));
               },
               child: const Row(
                 children: [

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:ola_mundo/user_edit.dart';
+import 'user_edit.dart';
 
 class UserInfo extends StatelessWidget {
   const UserInfo({super.key});

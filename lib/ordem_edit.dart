@@ -1,14 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:ordem_servico/user_edit.dart';
 
-class OrdemInfo extends StatelessWidget {
-  const OrdemInfo({super.key});
+class OrdemEdit extends StatelessWidget {
+  const OrdemEdit({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: const Text("Visualizar O.S"),
+          title: const Text("Editar O.S"),
           backgroundColor: Colors.blue,
         ),
         body: const Column(
@@ -124,18 +123,15 @@ class _NavigationBarOSState extends State<NavigationBarOS> {
         mainAxisAlignment: MainAxisAlignment.spaceAround,
         children: [
           TextButton(
-              onPressed: () {
-                Navigator.push(context,
-                    MaterialPageRoute(builder: (context) => const UserEdit()));
-              },
+              onPressed: () {},
               child: const Row(
                 children: [
                   Text(
-                    "Editar",
+                    "Salvar",
                     style: TextStyle(fontSize: 20),
                   ),
                   Icon(
-                    Icons.edit,
+                    Icons.save,
                     size: 20,
                   ),
                 ],

@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
-import 'package:ordem_servico/user_edit.dart';
+import 'package:ordem_servico/ordem_page.dart';
 
-class OrdemInfo extends StatelessWidget {
-  const OrdemInfo({super.key});
+class AddOrdem extends StatelessWidget {
+  const AddOrdem({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: const Text("Visualizar O.S"),
+          title: const Text("Abertura de O.S"),
           backgroundColor: Colors.blue,
         ),
         body: const Column(
@@ -18,7 +18,7 @@ class OrdemInfo extends StatelessWidget {
                   padding: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
                   child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [Solicitacao(), Prioridade(), Estado()])),
+                      children: [Solicitacao(), Prioridade()])),
               NavigationBarOS()
             ]));
   }
@@ -78,34 +78,6 @@ class Prioridade extends StatelessWidget {
   }
 }
 
-class Estado extends StatelessWidget {
-  const Estado({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return 
-    const Padding(padding: EdgeInsets.symmetric(vertical: 10), 
-    child: Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Text(
-          "Estado",
-          style: TextStyle(fontSize: 20, color: Colors.grey),
-        ),
-        SizedBox(
-          height: 10,
-        ),
-        SizedBox(
-          width: 100,
-          height: 30,
-          child: Text("Em curso"),
-        )
-      ],
-    ));
-    
-    
-  }
-}
 
 class NavigationBarOS extends StatefulWidget {
   const NavigationBarOS({super.key});
@@ -126,16 +98,16 @@ class _NavigationBarOSState extends State<NavigationBarOS> {
           TextButton(
               onPressed: () {
                 Navigator.push(context,
-                    MaterialPageRoute(builder: (context) => const UserEdit()));
+                    MaterialPageRoute(builder: (context) => const OrdemPage()));
               },
               child: const Row(
                 children: [
                   Text(
-                    "Editar",
+                    "Salvar",
                     style: TextStyle(fontSize: 20),
                   ),
                   Icon(
-                    Icons.edit,
+                    Icons.save,
                     size: 20,
                   ),
                 ],

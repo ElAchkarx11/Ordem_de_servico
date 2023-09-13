@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:ola_mundo/user_info.dart';
+import 'package:ordem_servico/add_ordem.dart';
+import 'user_info.dart';
 import 'ordem_info.dart';
+
 
 class OrdemPage extends StatelessWidget {
   const OrdemPage({super.key});
@@ -86,7 +88,10 @@ class _NavigationBarState extends State<NavigationBar> {
         mainAxisAlignment: MainAxisAlignment.spaceAround,
         children: [
           TextButton(
-              onPressed: () {},
+              onPressed: () {
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => const AddOrdem()));
+              },
               child: const Icon(
                 Icons.add,
                 size: 30,
