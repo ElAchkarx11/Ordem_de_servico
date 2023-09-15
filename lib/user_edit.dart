@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:ordem_servico/user_info.dart';
+import 'package:ola_mundo/ordem_page.dart';
+import 'user_info.dart';
 
 
 class UserEdit extends StatelessWidget {
@@ -105,7 +106,7 @@ class _NavigationBarState extends State<NavigationBarUser> {
           TextButton(
               onPressed: () {
                 Navigator.push(context,
-                    MaterialPageRoute(builder: (context) => const UserInfo()));
+                    MaterialPageRoute(builder: (context) => const OrdemPage()));
               },
               child: const Row(
                 children: [

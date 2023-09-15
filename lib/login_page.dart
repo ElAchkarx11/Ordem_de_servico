@@ -1,6 +1,9 @@
-
 import 'package:flutter/material.dart';
 import 'ordem_page.dart';
+import 'post.dart';
+import 'process.dart';
+
+Future<Post?>? post;
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
@@ -20,7 +23,6 @@ class LoginPageState extends State<LoginPage> {
     return Material(
       child: Column(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        
         children: [
           const Barra(),
           const loginPage(),
@@ -94,15 +96,36 @@ class _loginPageState extends State<loginPage> {
                         textStyle: const TextStyle(fontSize: 20),
                         backgroundColor: Colors.blue),
                     onPressed: () {
-                      Navigator.push(context, MaterialPageRoute(builder: (context) => const OrdemPage()));
-                      /* if(usuario == 'Teste' && senha == '123'){
-                        print("Deu boa");
-                      }else{
-                        print("Deu ruim");
-                      } */
+                      setState(() {
+                        post = createPost(usuario, senha);
+                      });
+                      if (usuario == 'Teste' && senha == '123') {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => const OrdemPage()));
+                      } else {
+                        
+                      }
                     },
                     child: const Text('Acessar'),
                   ),
+                  /*  FutureBuilder<Post?>(
+                      future: post,
+                      builder: (context, snapshot) {
+                        if (snapshot.connectionState ==
+                            ConnectionState.waiting) {
+                          return const CircularProgressIndicator();
+                        } else if (snapshot.connectionState ==
+                            ConnectionState.none) {
+                          return const Text("");
+                        } else {
+                          if (snapshot.hasData) {
+                            return nomeUsuario(context, snapshot);
+                          }
+                        }
+                        return nomeUsuario(context, snapshot);
+                      }) */
                 ]),
           )),
     ]);
@@ -121,3 +144,5 @@ class Barra extends StatelessWidget {
     );
   }
 }
+
+Widget nomeUsuario(context, snapshot) => Text(snapshot.data.userName);

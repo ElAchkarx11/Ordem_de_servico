@@ -1,7 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:ordem_servico/add_ordem.dart';
+import 'add_ordem.dart';
 import 'user_info.dart';
 import 'ordem_info.dart';
+import 'login_page.dart';
+import 'post.dart';
+import 'process.dart';
+
 
 
 class OrdemPage extends StatelessWidget {
@@ -11,7 +15,22 @@ class OrdemPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: const Text("Bem vindo"),
+          title: FutureBuilder<Post?>(
+                      future: post,
+                      builder: (context, snapshot) {
+                        if (snapshot.connectionState ==
+                            ConnectionState.waiting) {
+                          return const CircularProgressIndicator();
+                        } else if (snapshot.connectionState ==
+                            ConnectionState.none) {
+                          return const Text("");
+                        } else {
+                          if (snapshot.hasData) {
+                            return nomeUsuario(context, snapshot);
+                          }
+                        }
+                        return nomeUsuario(context, snapshot);
+                      }),
           backgroundColor: Colors.blue,
         ),
         body: const Column(

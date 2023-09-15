@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:ordem_servico/ordem_page.dart';
+import 'ordem_page.dart';
 
 class AddOrdem extends StatelessWidget {
   const AddOrdem({super.key});
