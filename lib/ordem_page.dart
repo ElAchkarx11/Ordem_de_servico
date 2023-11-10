@@ -31,7 +31,7 @@ class OrdemPage extends StatelessWidget {
                         }
                         return nomeUsuario(context, snapshot);
                       }),
-          backgroundColor: Colors.blue,
+          backgroundColor: Colors.grey,
         ),
         body: const Column(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,

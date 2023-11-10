@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:ola_mundo/ordem_page.dart';
+
+//Essa é a tela responsável por fazer a ediçao da ordem de serviço
 
 class OrdemEdit extends StatelessWidget {
   const OrdemEdit({super.key});
@@ -8,7 +11,7 @@ class OrdemEdit extends StatelessWidget {
     return Scaffold(
         appBar: AppBar(
           title: const Text("Editar O.S"),
-          backgroundColor: Colors.blue,
+          backgroundColor: Colors.grey,
         ),
         body: const Column(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -82,27 +85,25 @@ class Estado extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return 
-    const Padding(padding: EdgeInsets.symmetric(vertical: 10), 
-    child: Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Text(
-          "Estado",
-          style: TextStyle(fontSize: 20, color: Colors.grey),
-        ),
-        SizedBox(
-          height: 10,
-        ),
-        SizedBox(
-          width: 100,
-          height: 30,
-          child: Text("Em curso"),
-        )
-      ],
-    ));
-    
-    
+    return const Padding(
+        padding: EdgeInsets.symmetric(vertical: 10),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(
+              "Estado",
+              style: TextStyle(fontSize: 20, color: Colors.grey),
+            ),
+            SizedBox(
+              height: 10,
+            ),
+            SizedBox(
+              width: 100,
+              height: 30,
+              child: Text("Em curso"),
+            )
+          ],
+        ));
   }
 }
 
@@ -123,7 +124,10 @@ class _NavigationBarOSState extends State<NavigationBarOS> {
         mainAxisAlignment: MainAxisAlignment.spaceAround,
         children: [
           TextButton(
-              onPressed: () {},
+              onPressed: () {
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => const OrdemPage()));
+              },
               child: const Row(
                 children: [
                   Text(

@@ -9,7 +9,7 @@ class UserInfo extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: const Text("Conta", textAlign: TextAlign.center),
-        backgroundColor: Colors.blue,
+        backgroundColor: Colors.grey,
       ),
       body: const Column(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,

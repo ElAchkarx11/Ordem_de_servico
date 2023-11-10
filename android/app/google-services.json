@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "723218430671",
+    "project_id": "ordens-de-servico-fe71c",
+    "storage_bucket": "ordens-de-servico-fe71c.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:723218430671:android:90f895b235b31fb4f055ba",
+        "android_client_info": {
+          "package_name": "com.example.ola_mundo"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCvg38eS186UYQWTCxDkAasHh8jGybK0PQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -11,7 +11,7 @@ class UserEdit extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: const Text("Editar", textAlign: TextAlign.center),
-        backgroundColor: Colors.blue,
+        backgroundColor: Colors.grey,
       ),
       body: const Column(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,

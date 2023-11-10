@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'user_edit.dart';
+import 'ordem_edit.dart';
 
 class OrdemInfo extends StatelessWidget {
   const OrdemInfo({super.key});
@@ -9,7 +9,7 @@ class OrdemInfo extends StatelessWidget {
     return Scaffold(
         appBar: AppBar(
           title: const Text("Visualizar O.S"),
-          backgroundColor: Colors.blue,
+          backgroundColor: Colors.grey,
         ),
         body: const Column(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -42,10 +42,10 @@ class Solicitacao extends StatelessWidget {
         SizedBox(
             height: 100,
             width: double.infinity,
-            child: Padding(
-              padding: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
-              child: Text("Descrição de ordem de serviço..."),
-            ))
+            child: 
+  
+              Text("Descrição de ordem de serviço..."),
+            )
       ],
     );
   }
@@ -126,7 +126,7 @@ class _NavigationBarOSState extends State<NavigationBarOS> {
           TextButton(
               onPressed: () {
                 Navigator.push(context,
-                    MaterialPageRoute(builder: (context) => const UserEdit()));
+                    MaterialPageRoute(builder: (context) => const OrdemEdit()));
               },
               child: const Row(
                 children: [

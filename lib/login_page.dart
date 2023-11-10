@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'ordem_page.dart';
 import 'post.dart';
@@ -47,7 +48,6 @@ class loginPage extends StatefulWidget {
 class _loginPageState extends State<loginPage> {
   String usuario = '';
   String senha = '';
-
   @override
   Widget build(BuildContext context) {
     return Column(mainAxisAlignment: MainAxisAlignment.spaceAround, children: [
@@ -94,38 +94,18 @@ class _loginPageState extends State<loginPage> {
                         foregroundColor: Colors.white,
                         padding: const EdgeInsets.all(16.0),
                         textStyle: const TextStyle(fontSize: 20),
-                        backgroundColor: Colors.blue),
+                        backgroundColor: Colors.grey),
                     onPressed: () {
+                      fetchData(usuario, senha, context);
+                      /*  FirebaseFirestore.instance
+                          .collection("minha_colecao")
+                          .add({'campo1': usuario, 'campo2': senha}); */
                       setState(() {
                         post = createPost(usuario, senha);
                       });
-                      if (usuario == 'Teste' && senha == '123') {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => const OrdemPage()));
-                      } else {
-                        
-                      }
                     },
                     child: const Text('Acessar'),
                   ),
-                  /*  FutureBuilder<Post?>(
-                      future: post,
-                      builder: (context, snapshot) {
-                        if (snapshot.connectionState ==
-                            ConnectionState.waiting) {
-                          return const CircularProgressIndicator();
-                        } else if (snapshot.connectionState ==
-                            ConnectionState.none) {
-                          return const Text("");
-                        } else {
-                          if (snapshot.hasData) {
-                            return nomeUsuario(context, snapshot);
-                          }
-                        }
-                        return nomeUsuario(context, snapshot);
-                      }) */
                 ]),
           )),
     ]);
@@ -146,3 +126,32 @@ class Barra extends StatelessWidget {
 }
 
 Widget nomeUsuario(context, snapshot) => Text(snapshot.data.userName);
+
+void fetchData(usuario, senha, context) {
+  FirebaseFirestore.instance
+      .collection('minha_colecao')
+      .get()
+      .then((QuerySnapshot querySnapshot) {
+    querySnapshot.docs.forEach((doc) {
+      if (usuario == doc['usuario'] && senha == doc['senha']) {
+        print('Usuário: ${doc['usuario']}, Senha:${doc['senha']}');
+        Navigator.push(context,
+            MaterialPageRoute(builder: (context) => const OrdemPage()));
+      } else {
+        showDialog(
+            context: context,
+            builder: (context) => AlertDialog(
+                  title: const Text("Algo deu errado :("),
+                  content: const Text("Login ou senha incorretos"),
+                  actions: [
+                    TextButton(
+                        onPressed: () => Navigator.pop(context),
+                        child: const Text("Ok"))
+                  ],
+                ));
+      }
+    });
+  }).catchError((error) {
+    print('Erro ao recuperar dados: $error');
+  });
+}
