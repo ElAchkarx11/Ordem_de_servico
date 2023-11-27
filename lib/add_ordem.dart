@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:ola_mundo/ordem_edit.dart';
@@ -24,7 +25,6 @@ class AddOrdem extends StatelessWidget {
                   //A solicitação e a prioridade foram incluidas em elementos separados, para uma melhor organização em uma futura alteração do elemento
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [Prioridade()])),
-          
         ]));
   }
 }
@@ -37,14 +37,52 @@ class Prioridade extends StatefulWidget {
 }
 
 class _PrioridadeState extends State<Prioridade> {
+  final _solicitacaoController = TextEditingController();
+  String _prioridadeController = "";
+
   @override
+  //Método utilizado para liberar memória alocada pelos Controllers
+  void dispose() {
+    _solicitacaoController.dispose();
+
+    super.dispose();
+  }
+
+  Future verificandoVazio(){
+    try{
+      return addOrderDescription();
+    }catch(error){
+      return showDialog(
+            context: context,
+            builder: (context) => AlertDialog(
+                  title: const Text("Algo deu errado :("),
+                  content: Text(error.toString()),
+                  actions: [
+                    TextButton(
+                        onPressed: () => Navigator.pop(context),
+                        child: const Text("Ok"))
+                  ],
+                ));
+    }
+  }
+
+//Adicionando a descição de ordem e a prioridade
+  Future addOrderDescription() async {
+    await FirebaseFirestore.instance.collection("ordens_servico").add({
+      'descricao': _solicitacaoController.text.trim(),
+      'prioridade': _prioridadeController,
+      'matricula_user': '1'
+    });
+    // ignore: use_build_context_synchronously
+    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => const OrdemPage()));
+  }
+
   Widget build(BuildContext context) {
     final dropValue = ValueNotifier("");
     final dropOpcoes = ["Baixa", "Média", "Alta"];
-    String escolhaAt = '';
-    String descricao = '';
-
-    TextEditingController descricaoOrdem = TextEditingController();
 
     return Column(children: [
       Column(
@@ -64,9 +102,8 @@ class _PrioridadeState extends State<Prioridade> {
                 padding:
                     const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
                 child: TextFormField(
-                  onChanged: (value) => {descricao = value},
                   maxLines: 4,
-                  controller: descricaoOrdem,
+                  controller: _solicitacaoController,
                   decoration: const InputDecoration(
                       hintText: "Digite aqui a sua solicitação..."),
                 ),
@@ -79,10 +116,10 @@ class _PrioridadeState extends State<Prioridade> {
         child: ValueListenableBuilder(
           valueListenable: dropValue,
           builder: (BuildContext context, String value, _) {
-            return DropdownButtonFormField<String>(
+            return DropdownButtonFormField(
               hint: const Text("Selecione"),
               value: (value.isEmpty) ? null : value,
-              onChanged: (escolha) => {escolhaAt = escolha.toString()},
+              onChanged: (escolha) => {_prioridadeController = escolha!},
               items: dropOpcoes
                   .map((op) => DropdownMenuItem(value: op, child: Text(op)))
                   .toList(),
@@ -98,10 +135,7 @@ class _PrioridadeState extends State<Prioridade> {
           children: [
             TextButton(
                 onPressed: () {
-                  print(escolhaAt);
-                  print(descricao);
-                  /* Navigator.push(context,
-                    MaterialPageRoute(builder: (context) => const OrdemPage())); */
+                  verificandoVazio();
                 },
                 child: const Row(
                   children: [

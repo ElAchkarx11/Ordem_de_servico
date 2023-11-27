@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:ola_mundo/user_register.dart';
 import 'add_ordem.dart';
 import 'user_info.dart';
 import 'ordem_info.dart';
@@ -15,22 +16,7 @@ class OrdemPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: FutureBuilder<Post?>(
-                      future: post,
-                      builder: (context, snapshot) {
-                        if (snapshot.connectionState ==
-                            ConnectionState.waiting) {
-                          return const CircularProgressIndicator();
-                        } else if (snapshot.connectionState ==
-                            ConnectionState.none) {
-                          return const Text("");
-                        } else {
-                          if (snapshot.hasData) {
-                            return nomeUsuario(context, snapshot);
-                          }
-                        }
-                        return nomeUsuario(context, snapshot);
-                      }),
+          title: const Text("teste"),
           backgroundColor: Colors.grey,
         ),
         body: const Column(
@@ -124,6 +110,16 @@ class _NavigationBarState extends State<NavigationBar> {
                 Icons.person,
                 size: 30,
               )),
+              TextButton(
+              onPressed: () {
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => const UserRegister()));
+              },
+              child: const Icon(
+                Icons.add_reaction_outlined,
+                size: 30,
+              )),
+              
         ],
       ),
     );
