@@ -1,7 +1,6 @@
-# ola_mundo
+# Sistema de ordem de serviço
 
-A new Flutter project.
-
+Projeto para a matéria de Desenvolvimento de Sistemas Web e Mobile
 ## Getting Started
 
 This project is a starting point for a Flutter application.
